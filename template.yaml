@@ -16,3 +16,15 @@ Resources:
           Properties:
             Path: /orders
             Method: POST
+  ReadOrderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: orders_api/
+      Handler: read.lambda_handler
+      Runtime: python3.11
+      Events:
+        ReadOrders:
+          Type: Api
+          Properties:
+            Path: /orders/{id}
+            Method: GET
