@@ -3,13 +3,17 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   orders-api
 
+Globals:
+  Function:
+    Runtime: python3.11
+    Timeout: 30
+
 Resources:
   CreateOrderFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: orders_api/
       Handler: create.lambda_handler
-      Runtime: python3.11
       Events:
         CreateOrders:
           Type: Api
@@ -21,7 +25,6 @@ Resources:
     Properties:
       CodeUri: orders_api/
       Handler: read.lambda_handler
-      Runtime: python3.11
       Events:
         ReadOrders:
           Type: Api
